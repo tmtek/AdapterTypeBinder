@@ -19,35 +19,35 @@ The AdapterTypeBinder is added to an Adapter subclass, and takes over all of the
 ```
 private static final class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-		private final MyDataObject[] mItems;
+	private final MyDataObject[] mItems;
 
-		private final AdapterTypeBinder<Object, RecyclerView.ViewHolder> mTypeBinder;
-		
-		public Adapter(final MyDataObject[] items) {
-			mItems = items;
-			mTypeBinder = new AdapterTypeBinder<Object, RecyclerView.ViewHolder>();
-		}
-
-		@Override
-		public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
-			return mTypeBinder.onCreateViewHolder(parent, viewType);
-		}
-
-		@Override
-		public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
-			mTypeBinder.onBindViewHolder(holder, mItems[position]);
-		}
-
-		@Override
-		public int getItemViewType(int position) {
-			return mTypeBinder.getItemViewType(mItems[position]);
-		}
-
-		@Override
-		public int getItemCount() {
-			return mItems.length;
-		}
+	private final AdapterTypeBinder<Object, RecyclerView.ViewHolder> mTypeBinder;
+	
+	public Adapter(final MyDataObject[] items) {
+		mItems = items;
+		mTypeBinder = new AdapterTypeBinder<Object, RecyclerView.ViewHolder>();
 	}
+
+	@Override
+	public RecyclerView.ViewHolder onCreateViewHolder(@NonNull final ViewGroup parent, final int viewType) {
+		return mTypeBinder.onCreateViewHolder(parent, viewType);
+	}
+
+	@Override
+	public void onBindViewHolder(@NonNull final RecyclerView.ViewHolder holder, final int position) {
+		mTypeBinder.onBindViewHolder(holder, mItems[position]);
+	}
+
+	@Override
+	public int getItemViewType(int position) {
+		return mTypeBinder.getItemViewType(mItems[position]);
+	}
+
+	@Override
+	public int getItemCount() {
+		return mItems.length;
+	}
+}
 
 ```
 
