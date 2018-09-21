@@ -53,7 +53,7 @@ private static final class Adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 ### ViewHolder Bindings
 
-Once our Adapter is prepared, we can now add bindings that will map our data to different ViewHolders:
+Once our Adapter is prepared, we can now add bindings that will map our data to different ViewHolders. You can call this right off the back of your constructor for the AdapterTypeBinder:
 
 ```
 mTypeBinder.add(
@@ -67,7 +67,7 @@ mTypeBinder.add(
 
 ```
 
-The `.add()` method receives an instance of a `AdapterTypeBinder.Binding`. These object are what you use to define all of your binding rules. The method returns a self reference for convenient chaning.
+The `.add()` method receives an instance of a `AdapterTypeBinder.Binding`. These objects are what you use to define all of your binding rules. The method returns a self reference for convenient chaning.
 
 `new AdapterTypeBinder.Binding<>(MyDataType.class, MyViewHolder.class)` : When instantiating a Binding, you must specify what specific type of data you are mapping, then the specific ViewHolder type you are mapping to.
 
@@ -83,5 +83,5 @@ The `.add()` method receives an instance of a `AdapterTypeBinder.Binding`. These
 
 ### Matching Cascade
 
-It is important to note that it is possible for multiple Binders to match data items. In this case, they will operated on by the first Binder added that matches. 
+It is important to note that it is possible for multiple Binders to match data items. In this case, they will operated on by the first Binder added that matches. You should always add a Binder last that acts as your default that binds your most basic data to your most basic ViewHolder.
 
