@@ -8,7 +8,7 @@ The AdapterTypeBinder is used with Android list Adapters, to map list data to Vi
 
 When you instantiate your AdapterTypeBinder, you will need to specify it's base data type, and it's base view holder type. The following is the most basic definition possible:
 
-```
+```java
 AdapterTypeBinder<Object, RecyclerView.ViewHolder> typeBinder;
 ```
 
@@ -16,7 +16,7 @@ AdapterTypeBinder<Object, RecyclerView.ViewHolder> typeBinder;
 
 The AdapterTypeBinder is added to an Adapter subclass, and takes over all of the work regarding ViewHolder creation and binding:
 
-```
+```java
 private static final class Adapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
 	private final MyDataObject[] mItems;
@@ -55,7 +55,7 @@ private static final class Adapter extends RecyclerView.Adapter<RecyclerView.Vie
 
 Once our Adapter is prepared, we can now add bindings that will map our data to different ViewHolders. You can call this right off the back of your constructor for the AdapterTypeBinder:
 
-```
+```java
 mTypeBinder.add(
 	new AdapterTypeBinder.Binding<>(MyDataType.class, MyViewHolder.class)
 	.isMatch(dataItem -> true)
@@ -75,11 +75,13 @@ The `.add()` method receives an instance of a `AdapterTypeBinder.Binding`. These
 
 `.onCreate(parentView -> new MyViewHolder(parentView))` is a function called when a match to your Binder is made, and a new instance of a ViewHolder must be created. The function receives a reference to the parent view that will allow you to build your ViewHolder and return it.
 
-`
+```java
 .onBind((dataItem, viewHolder) -> {
     //bind data to your ViewHolder
 })
-` is called when the adapter is trying to bind data to your ViewHolder. Supply a BiConsumer that receives a reference to the data item being bound, and a reference to the ViewHolder being bound to.
+``` 
+
+is called when the adapter is trying to bind data to your ViewHolder. Supply a BiConsumer that receives a reference to the data item being bound, and a reference to the ViewHolder being bound to.
 
 ### Matching Cascade
 
